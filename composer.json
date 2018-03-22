@@ -1,0 +1,12 @@
+{
+  "name": "Dingtalk",
+  "version": "1.0.0",
+  "require" : {
+    "php" : "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dingtalk\\": "src/"
+    }
+  }
+}
