@@ -53,22 +53,29 @@ class Cache {
 
 class FileCache
 {
+
+    public function __construct()
+    {
+        $this->path = dirname(__DIR__);
+    }
+
     function set($key, $value, $expire_time = 0) {
         if($key&&$value){
-            $data = json_decode($this->get_file(Config::get('DIR_ROOT') ."filecache.php"),true);
+//            $data = json_decode($this->get_file(Config::get('DIR_ROOT') ."filecache.php"),true);
+            $data = json_decode($this->get_file($this->path ."filecache.php"),true);
             $item = array();
             $item["$key"] = $value;
 
             $item['expire_time'] = $expire_time;
             $item['create_time'] = time();
             $data["$key"] = $item;
-            $this->set_file(Config::get('DIR_ROOT')."/filecache.php",json_encode($data));
+            $this->set_file($this->path."/filecache.php",json_encode($data));
         }
     }
 
     function get($key) {
         if($key){
-            $data = json_decode($this->get_file(Config::get('DIR_ROOT') ."filecache.php"),true);
+            $data = json_decode($this->get_file($this->path ."filecache.php"),true);
             if($data&&array_key_exists($key,$data)){
                 $item = $data["$key"];
                 if(!$item){
