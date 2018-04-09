@@ -47,7 +47,7 @@ class FileCache
 
     public function __construct()
     {
-        $this->path = dirname(__DIR__);
+        $this->path = dirname(dirname(__DIR__));
     }
 
     function set($key, $value, $expire_time = 0) {

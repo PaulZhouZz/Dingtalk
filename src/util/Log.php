@@ -18,7 +18,7 @@ class Log{
     private static function write($level, $msg)
     {
 //        $filename = Config::get('DIR_ROOT') . "corp.log";
-        $filename = dirname(__DIR__) . "/corp.log";
+        $filename = dirname(dirname(__DIR__)) . "/corp.log";
         $logFile = fopen($filename, "aw");
         fwrite($logFile, $level . "/" . date(" Y-m-d h:i:s") . "  " . $msg . "\n");
         fclose($logFile);
